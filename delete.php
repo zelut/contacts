@@ -3,27 +3,12 @@
 require_once("db.inc.php");
 require_once("header.inc.php");
 
-    if(isset($_POST['delete'])) {
-        $query = "DELETE FROM $dbtable
-        WHERE id='".$_POST['id']."' AND username='".$_SESSION['username']."'";
-
-    $result = mysql_query($query)
-        or die(mysql_error());
-
-    header("Location: index.php");
-
-    }
-
-    $query = "SELECT * FROM $dbtable WHERE id='".$_GET['id']."' AND username='".$_SESSION['username']."'";
-
-    $result = mysql_query($query)
-        or die(mysql_error());
-
-    $row = mysql_fetch_array($result);
+$row = query_existing_entry();
 
 ?>
 
-<form method="POST" action="<?php echo $PHP_SELF?>" class='f-wrap-1'>
+
+<form method="post" action="<?php echo $PHP_SELF?>" class='f-wrap-1'>
 
     <fieldset>
 
@@ -72,6 +57,12 @@ require_once("header.inc.php");
 
         </fieldset>
 </form>
+
 <?php
+
+if (isset($_POST['delete'])) {
+    delete_existing_entry();
+}
+
 require_once("footer.inc.php");
 ?>

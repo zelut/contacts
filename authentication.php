@@ -3,9 +3,7 @@ session_start();
 
 require_once("db.inc.php");
 
-$query = "SELECT * FROM $acctable WHERE username='".$_POST['username']."' AND password='".md5($_POST['password'])."'";
-
-$result = mysql_query($query)
+$result = mysql_query("SELECT * FROM accounts WHERE username='{$_POST['username']}' AND password='".md5($_POST['password'])."'")
     or die(mysql_error());
 
 $rowcount = mysql_num_rows($result);

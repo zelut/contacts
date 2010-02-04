@@ -3,28 +3,12 @@
 require_once("db.inc.php");
 require_once("header.inc.php");
 
-    if(isset($_POST['update'])) {
-        $query = "UPDATE $dbtable SET
-        firstname='".$_POST['firstname']."',lastname='".$_POST['lastname']."',address='".$_POST['address']."',phone='".$_POST['phone']."',email='".$_POST['email']."',notes='".$_POST['notes']."',bday='".$_POST['bday']."',username='".$_SESSION['username']."'
-        WHERE id='".$_POST['id']."' AND username='".$_SESSION['username']."'";
 
-        $result = mysql_query($query)
-            or die(mysql_error());
-
-        header("Location: index.php");
-
-    }
-
-    $query = "SELECT * FROM $dbtable WHERE id='".$_GET['id']."' AND username='".$_SESSION['username']."'";
-
-    $result = mysql_query($query)
-        or die(mysql_error());
-
-    $row = mysql_fetch_array($result);
+$row = query_existing_entry();
 
 ?>
 
-<form method="POST" action="<?php echo $PHP_SELF?>" class='f-wrap-1'>
+<form method="post" action="<?php echo $PHP_SELF?>" class='f-wrap-1'>
 
     <fieldset>
 
@@ -68,11 +52,17 @@ require_once("header.inc.php");
         </label>
 
         <div class='f-submit-wrap'>
-        <input type="Submit" name="update" value="Update Information">
+        <input type="Submit" name="edit" value="Update Information">
         </div>
 
         </fieldset>
 </form>
+
 <?php
+
+if (isset($_POST['edit'])) {
+    database_update();
+}
+
 require_once("footer.inc.php");
 ?>

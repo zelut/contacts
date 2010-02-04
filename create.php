@@ -3,21 +3,15 @@
 require_once("db.inc.php");
 require_once("header.inc.php");
 
-    if(isset($_POST['submit'])) {
-        $query = "INSERT INTO $dbtable
-        (firstname, lastname, address, phone, email, notes, bday, username)
-        VALUES ('".$_POST['firstname']."','".$_POST['lastname']."','".$_POST['address']."','".$_POST['phone']."','".$_POST['email']."','".$_POST['notes']."','".$_POST['bday']."','".$_SESSION['username']."')";
-
-        $result = mysql_query($query)
-            or die(mysql_error());
-
-        header("Location: index.php");
-
-    }
+if (isset($_POST['submit']) AND ctype_alpha($_POST['firstname']) AND ctype_alpha($_POST['lastname'])) {
+    database_insert();
+    
+//    print "Database has been updated.";
+}
 
 ?>
 
-<form method='POST' action='create.php' class='f-wrap-1'>
+<form method='POST' action='<?php $PHP_SELF ?>' class='f-wrap-1'>
 
     <fieldset>
 

@@ -3,7 +3,7 @@
 require_once("db.inc.php");
     
     // Create the contacts table
-    mysql_query("CREATE TABLE $dbtable (
+    mysql_query("CREATE TABLE contacts (
         id INT NOT NULL AUTO_INCREMENT,
         PRIMARY KEY(id),
         firstname VARCHAR(30) NOT NULL,
@@ -25,12 +25,12 @@ require_once("db.inc.php");
     echo "Tables Created!<br />";
 
     // Populate generic data
-    mysql_query("INSERT INTO $dbtable 
+    mysql_query("INSERT INTO contacts 
         (firstname, lastname, phone, email, username) 
         VALUES('John','Doe','15555555555','john.doe@example.com','admin')")
         or die(mysql_error());
     
-    mysql_query("INSERT INTO $dbtable
+    mysql_query("INSERT INTO contacts
         (firstname, lastname, phone, email, username) 
         VALUES('Jane','Doe','15555555555','jane.doe@example.com','admin')")
         or die(mysql_error());
@@ -44,7 +44,7 @@ require_once("db.inc.php");
     echo "Default Data Inserted<br />";
 
     // Display default data
-    $query = "SELECT * FROM $dbtable";
+    $query = "SELECT * FROM contacts";
 
     $result = mysql_query($query)
         or die(mysql_error());

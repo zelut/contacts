@@ -3,39 +3,13 @@
 require_once("db.inc.php");
 require_once("header.inc.php");
 
-if ($_SESSION['username'] != 'admin') {
-    header("Location: index.php");
-}
-
-    $username = trim($_POST['username']);
-    $password = trim($_POST['password']);
-
-    if($username && $password) {
-        // check to see if user already exists
-        // if so, update the existing entry
-        // don't create a new one.
-        $query = "SELECT * FROM accounts WHERE username='{$_POST['username']}'";
-        $result = mysql_query($query)
-            or die(mysql_error());
-
-        $rowcount = mysql_num_rows($result);
-        if ($rowcount == 1) {
-            $query = "UPDATE $acctable SET
-            password=md5('{$_POST['password']}')
-            WHERE username='{$_POST['username']}'";
-
-            $result = mysql_query($query)
-                or die(mysql_error());
-        } else {
-
-            $query = "INSERT INTO accounts (username, password) VALUES ('{$_POST['username']}',md5('{$_POST['password']}'))";
-            $result = mysql_query($query)
-                or die(mysql_error());
-        }
-    }
+//if ($_SESSION['username'] != 'admin') {
+//    header("Location: index.php");
+//}
 
 ?>
-<form method="POST" action="admin.php" class='f-wrap-1'>
+
+<form method='POST' action='<?php $PHP_SELF ?>' class='f-wrap-1'>
 
     <fieldset>
 
@@ -52,11 +26,16 @@ if ($_SESSION['username'] != 'admin') {
         </label>
 
         <div class='f-submit-wrap'>
-        <input type='submit' value='Submit' class='f-submit' tabindex='3' />
+        <input type='submit' name='admin' value='Submit' class='f-submit' tabindex='3' />
         </div>
 
         </fieldset>
 </form>
+
 <?php
+
+if (isset($_POST['admin'])) {
+    admin_manage_users();
+}
 require_once("footer.inc.php");
 ?>

@@ -31,9 +31,10 @@ http://creativecommons.org/licenses/GPL/2.0/
         <li><a href="create.php">New Entry</a></li>
 
         <?php
-            if ($_SESSION['username'] == 'admin') {
-                echo "<li><a href='admin.php'>Admin</a></li>";
-        }?>
+            //if ($_SESSION['username'] == 'admin') {
+            //    echo "<li><a href='admin.php'>Admin</a></li>";
+            //}
+        ?>
 
         <li><a href="logout.php">Logout</a></li>
         </ul>
@@ -64,6 +65,7 @@ http://creativecommons.org/licenses/GPL/2.0/
         </fieldset>
 
 </form>
+
 <?php
 require_once("footer.inc.php");
 ?>

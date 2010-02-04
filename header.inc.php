@@ -38,13 +38,10 @@ http://creativecommons.org/licenses/GPL/2.0/
         <li class="active"><a href="index.php">Home</a></li>
         <li><a href="create.php">New Entry</a></li>
 <?php
-    if ($_SESSION['username'] == 'admin') {
+//    if ($_SESSION['username'] == 'admin') {
         echo "<li><a href='admin.php'>Admin</a></li>";
-}
+//    }
 ?>
         <li><a href="logout.php">Logout</a></li>
         </ul>
     </div>
-
-    <div id='content-wrap'>
-        <div id='content'>
