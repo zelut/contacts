@@ -17,7 +17,7 @@ require_once("db.inc.php");
         or die(mysql_error());
 
     // Create the accounts table
-    mysql_query("CREATE TABLE $acctable (
+    mysql_query("CREATE TABLE accounts (
         username VARCHAR(12) NOT NULL,
         password VARCHAR(32) NOT NULL)")
         or die(mysql_error());
@@ -36,7 +36,7 @@ require_once("db.inc.php");
         or die(mysql_error());
 
     // Populate default login credentials
-    mysql_query("INSERT INTO $acctable
+    mysql_query("INSERT INTO accounts
         (username, password)
         VALUES('admin',md5('password'))")
         or die(mysql_error());

@@ -100,5 +100,4 @@ function admin_manage_users() {
     }
 }
 
-
 ?>
