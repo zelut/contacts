@@ -3,9 +3,9 @@
 require_once("db.inc.php");
 require_once("header.inc.php");
 
-//if ($_SESSION['username'] != 'admin') {
-//    header("Location: index.php");
-//}
+if ($_SESSION['username'] != 'admin') {
+    header("Location: index.php");
+}
 
 ?>
 
